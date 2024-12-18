@@ -1,0 +1,25 @@
+    <!-- Champ Titre -->
+    <div>
+      <label for="title">Titre du menu</label>
+      <input id="title" formControlName="title" type="text" placeholder="Entrez le titre" />
+      <div *ngIf="albumForm.get('title')?.invalid && albumForm.get('title')?.touched">
+        <small class="error">Le titre est obligatoire.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="couverture">Couverture</label>
+      <textarea id="couverture" formControlName="description" placeholder="Entrez la description"></textarea>
+      <div *ngIf="albumForm.get('description')?.invalid && albumForm.get('description')?.touched">
+        <small class="error" *ngIf="albumForm.get('couverture')?.errors?.['required']">
+          La description est obligatoire.
+        </small>
+        <small class="error" *ngIf="albumForm.get('description')?.errors?.['minlength']">
+          La description doit contenir au moins 10 caractères.
+        </small>
+      </div>
+    </div>
+  
+    <!-- Bouton d'envoi, désactivé si le formulaire est invalide -->
+    <button type="submit" [disabled]="albumForm.invalid">Ajouter</button>
+  
